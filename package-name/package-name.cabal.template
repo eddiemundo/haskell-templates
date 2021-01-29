@@ -1,0 +1,38 @@
+cabal-version:       >=1.10
+name:                $packageName
+version:             0.1.0.0
+-- synopsis:
+-- description:
+-- bug-reports:
+-- license:
+license-file:        LICENSE
+author:              $author
+maintainer:          $author <$email>
+-- copyright:
+-- category:
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+executable $packageName
+  main-is:             Main.hs
+  ghc-options:         -Wall
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+  other-modules: 
+  other-extensions:
+
+  build-depends: 
+    base >=4.14 && < 4.15,
+    text,
+    bytestring,
+    scientific,
+    optics,
+    streamly,
+    time,
+    containers,
+    transformers,
+    in-other-words
+
+  -- hs-source-dirs:
+  default-language:    Haskell2010
+
