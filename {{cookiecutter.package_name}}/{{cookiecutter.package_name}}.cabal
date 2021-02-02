@@ -13,7 +13,7 @@ maintainer:          {{cookiecutter.author}} <{{cookiecutter.email}}>
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
-executable {{cookiecutter.package-name}}
+executable {{cookiecutter.package_name}}
   main-is:             Main.hs
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns
