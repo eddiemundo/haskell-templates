@@ -1,19 +1,19 @@
 cabal-version:       >=1.10
-name:                $packageName
+name:                {{cookiecutter.package-name}}
 version:             0.1.0.0
 -- synopsis:
 -- description:
 -- bug-reports:
 -- license:
 license-file:        LICENSE
-author:              $author
-maintainer:          $author <$email>
+author:              {{cookiecutter.author}}
+maintainer:          {{cookiecutter.author}} <{{cookiecutter.email}}>
 -- copyright:
 -- category:
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
-executable $packageName
+executable {{cookiecutter.package-name}}
   main-is:             Main.hs
   ghc-options:         -Wall
                        -Wincomplete-uni-patterns

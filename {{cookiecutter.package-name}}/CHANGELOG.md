@@ -1,4 +1,4 @@
-# Revision history for $packageName
+# Revision history for {{cookiecutter.package-name}}
 
 ## 0.1.0.0 -- YYYY-mm-dd
 

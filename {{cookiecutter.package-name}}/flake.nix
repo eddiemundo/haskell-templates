@@ -1,11 +1,10 @@
 {
-  description = "A very basic flake for $packageName";
+  description = "A very basic flake for {{cookiecutter.package-name}}";
   inputs = {
     nixos-flake.url = "git+file:///home/jon/projects/nixos-flake";
     nixpkgs.follows = "nixos-flake/nixpkgs";
     haskell-nix.url = "github:input-output-hk/haskell.nix";
     flake-utils.url = "github:numtide/flake-utils";
-    
   };
   outputs = { self, nixos-flake, nixpkgs, haskell-nix, flake-utils }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
@@ -19,7 +18,7 @@
         };
      in {
        # Built by `nix build .`
-       defaultPackage = project.hsPkgs.$packageName.components.exes.$packageName;
+       defaultPackage = project.hsPkgs.{{cookiecutter.package-name}}.components.exes.{{cookiecutter.package-name}};
        
        # This is used by `nix develop .` to open a shell for use with
        devShell = project.shellFor {
