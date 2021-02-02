@@ -1,1 +1,1 @@
-Templates that works with https://github.com/fujimura/hi.
+The intention is to have 1 cookiecutter template per branch.
