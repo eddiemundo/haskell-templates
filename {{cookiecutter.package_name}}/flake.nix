@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake for {{cookiecutter.package-name}}";
+  description = "A very basic flake for {{cookiecutter.package_name}}";
   inputs = {
     nixos-flake.url = "git+file:///home/jon/projects/nixos-flake";
     nixpkgs.follows = "nixos-flake/nixpkgs";
@@ -18,7 +18,7 @@
         };
      in {
        # Built by `nix build .`
-       defaultPackage = project.hsPkgs.{{cookiecutter.package-name}}.components.exes.{{cookiecutter.package-name}};
+       defaultPackage = project.hsPkgs.{{cookiecutter.package_name}}.components.exes.{{cookiecutter.package_name}};
        
        # This is used by `nix develop .` to open a shell for use with
        devShell = project.shellFor {

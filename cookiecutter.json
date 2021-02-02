@@ -1,5 +1,5 @@
 {
-    "package-name": "default-package-name",
+    "package_name": "default-package-name",
     "author": "Default Author",
     "email": "default@email.address"
 }
