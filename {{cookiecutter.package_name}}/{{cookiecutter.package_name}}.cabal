@@ -37,7 +37,8 @@ executable {{cookiecutter.package_name}}
   other-extensions:
     BangPatterns
     BinaryLiterals
-    ConstraintKinds -- in-other-words
+    -- in-other-words
+    ConstraintKinds 
     DeriveDataTypeable
     -- DeriveFoldable -- implied by DeriveTraversable
     -- DeriveFunctor -- implied by DeriveTraversable
@@ -46,12 +47,15 @@ executable {{cookiecutter.package_name}}
     EmptyCase
     EmptyDataDecls
     -- ExplicitForAll -- implied by RankNTypes, ExistentialQuantification, ScopedTypeVariables
-    FlexibleContexts -- in-other-words
+    -- in-other-words
+    FlexibleContexts 
     FlexibleInstances
-    GADTSyntax -- implied by GADTs
+    -- implied by GADTs
+    GADTSyntax
     HexFloatLiterals
     -- KindSignatures -- implied by PolyKinds
-    MultiParamTypeClasses -- implied by FunctionalDependencies
+    -- implied by FunctionalDependencies
+    MultiParamTypeClasses 
     StandaloneDeriving
     -- ConstrainedClassMethods -- implied by MultiParamTypeClasses
     EmptyDataDeriving
@@ -59,28 +63,36 @@ executable {{cookiecutter.package_name}}
     InstanceSigs
     -- NumericUnderscores
     PostfixOperators
-    RankNTypes -- in-other-words | implied by ImpredicativeTypes
+    -- in-other-words | implied by ImpredicativeTypes
+    RankNTypes 
     -- StarIsType -- default
-    TypeApplications -- in-other-words
+    -- in-other-words
+    TypeApplications 
     DeriveLift
     -- ForeignFunctionInterface -- default
     GeneralisedNewtypeDeriving
     NamedFieldPuns
-    PolyKinds -- in-other-words
+    -- in-other-words
+    PolyKinds 
     StandaloneKindSignatures
     -- TypeSynonymInstances -- implied by FlexibleInstances
     ExistentialQuantification
     NamedWildCards
     ScopedTypeVariables
     TupleSections
-    TypeOperators -- in-other-words
-    GADTs -- in-other-words
+    -- in-other-words
+    TypeOperators 
+    -- in-other-words
+    GADTs 
     -- MonoLocalBinds -- implied by GADTs
     OverloadedStrings
     -- RecordWildCards
-    TypeFamilies -- in-other-words | implied by TypeFamilyDependencies
-    DataKinds -- in-other-words
-    LambdaCase -- in-other-words
+    -- in-other-words | implied by TypeFamilyDependencies
+    TypeFamilies 
+    -- in-other-words
+    DataKinds 
+    -- in-other-words
+    LambdaCase 
     -- NegativeLiterals
     -- UnicodeSyntax
     DefaultSignatures
@@ -96,7 +108,7 @@ executable {{cookiecutter.package_name}}
     -- UnliftedNewtypes
     BlockArguments
     -- DisambiguateRecordFields -- implied by RecordWildCards, DuplicateRecordFields
-    LexicalNegation
+    -- LexicalNegation
     -- LiberalTypeSynonyms
     MultiWayIf
     -- RecursiveDo
