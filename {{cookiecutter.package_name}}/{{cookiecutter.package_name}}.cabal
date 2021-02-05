@@ -76,7 +76,7 @@ executable {{cookiecutter.package_name}}
     TypeOperators -- in-other-words
     GADTs -- in-other-words
     -- MonoLocalBinds -- implied by GADTs
-    -- OverloadedStrings
+    OverloadedStrings
     -- RecordWildCards
     TypeFamilies -- in-other-words | implied by TypeFamilyDependencies
     DataKinds -- in-other-words
