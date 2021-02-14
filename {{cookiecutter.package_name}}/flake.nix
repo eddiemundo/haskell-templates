@@ -9,7 +9,7 @@
   outputs = { self, nixos-flake, nixpkgs, haskell-nix, flake-utils }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
-        haskell-compiler-name = "ghc8103";
+        haskell-compiler-name = "ghc8104";
         haskell-nix-pkgs = haskell-nix.legacyPackages.${system};
         pkgs = import nixpkgs { inherit system; };
         project = haskell-nix-pkgs.haskell-nix.cabalProject' {
@@ -22,11 +22,6 @@
        
        # This is used by `nix develop .` to open a shell for use with
        devShell = project.shellFor {
-         # tools = {
-           # cabal = "3.2.0.0";
-           # hlint = "latest";
-           # haskell-language-server = "latest";
-         # };
          buildInputs = with pkgs; [
            cabal-install
            haskell.packages."${haskell-compiler-name}".haskell-language-server
