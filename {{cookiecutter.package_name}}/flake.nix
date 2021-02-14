@@ -1,8 +1,7 @@
 {
   description = "A very basic flake for {{cookiecutter.package_name}}";
   inputs = {
-    nixos-flake.url = "git+file:///home/jon/projects/nixos-flake";
-    nixpkgs.follows = "nixos-flake/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/6083863f4ad49c59a74ed5496081727e23ccd754";
     haskell-nix.url = "github:input-output-hk/haskell.nix";
     flake-utils.url = "github:numtide/flake-utils";
   };
