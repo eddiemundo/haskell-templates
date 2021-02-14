@@ -34,7 +34,7 @@ executable {{cookiecutter.package_name}}
 
   other-modules: 
 
-  other-extensions:
+  default-extensions:
     BangPatterns
     BinaryLiterals
     -- in-other-words
