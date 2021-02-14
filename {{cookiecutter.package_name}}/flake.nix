@@ -5,7 +5,7 @@
     haskell-nix.url = "github:input-output-hk/haskell.nix";
     flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixos-flake, nixpkgs, haskell-nix, flake-utils }:
+  outputs = { self, nixpkgs, haskell-nix, flake-utils }:
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
       let
         haskell-compiler-name = "ghc8104";
