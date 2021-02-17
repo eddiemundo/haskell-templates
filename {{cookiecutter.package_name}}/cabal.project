@@ -1,0 +1,7 @@
+packages: .
+
+source-repository-package
+  type: git
+  location: https://github.com/eddiemundo/Melude.git
+  tag: 73d698efe5d419193eb1960b65fc66dbcdaf2641
+
