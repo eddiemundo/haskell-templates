@@ -1,4 +1,4 @@
-cabal-version:       >=1.10
+cabal-version:       3.0
 name:                {{cookiecutter.package_name}}
 version:             0.1.0.0
 -- synopsis:
@@ -14,15 +14,24 @@ build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
 executable {{cookiecutter.package_name}}
+  hs-source-dirs:      app
   main-is:             Main.hs
 
   ghc-options:         -Wall
+                       -Werror
                        -Wincomplete-uni-patterns
                        -Wincomplete-record-updates
+                       -Wpartial-fields
+                       -Wmissing-home-modules
+                       -Widentities
+                       -Wredundant-constraints
+                       -Wcpp-undef
+                       -Wmissing-export-lists
 
   build-depends: 
     base >=4.14 && < 4.15,
-    melude,
+    aeson,
+    async,
     text,
     transformers,
     bytestring,
@@ -31,102 +40,61 @@ executable {{cookiecutter.package_name}}
     streamly,
     time,
     containers,
-    in-other-words
+    effectful,
+    effectful-th,
+    hs-opentelemetry-api,
+    hs-opentelemetry-sdk,
+    optics,
+    safe-exceptions,
+    unordered-containers
 
   other-modules:
 
   default-extensions:
-    BangPatterns
-    BinaryLiterals
-    -- in-other-words
-    ConstraintKinds 
-    DeriveDataTypeable
-    -- DeriveFoldable -- implied by DeriveTraversable
-    -- DeriveFunctor -- implied by DeriveTraversable
-    DeriveGeneric
-    DeriveTraversable
-    EmptyCase
-    EmptyDataDecls
-    -- ExplicitForAll -- implied by RankNTypes, ExistentialQuantification, ScopedTypeVariables
-    -- in-other-words
-    FlexibleContexts 
-    FlexibleInstances
-    -- implied by GADTs
-    GADTSyntax
-    HexFloatLiterals
-    -- KindSignatures -- implied by PolyKinds
-    -- implied by FunctionalDependencies
-    MultiParamTypeClasses 
-    StandaloneDeriving
-    -- ConstrainedClassMethods -- implied by MultiParamTypeClasses
-    EmptyDataDeriving
-    ImportQualifiedPost
-    InstanceSigs
-    -- NumericUnderscores
-    PostfixOperators
-    -- in-other-words | implied by ImpredicativeTypes
-    RankNTypes 
-    -- StarIsType -- default
-    -- in-other-words
-    TypeApplications 
-    DeriveLift
-    -- ForeignFunctionInterface -- default
-    GeneralisedNewtypeDeriving
-    NamedFieldPuns
-    -- in-other-words
-    PolyKinds 
-    StandaloneKindSignatures
-    -- TypeSynonymInstances -- implied by FlexibleInstances
-    ExistentialQuantification
-    NamedWildCards
-    ScopedTypeVariables
-    TupleSections
-    -- in-other-words
-    TypeOperators 
-    -- in-other-words
+    GHC2021
+    DuplicateRecordFields
+    NoFieldSelectors
+    DerivingVia
     GADTs 
-    -- MonoLocalBinds -- implied by GADTs
     OverloadedStrings
-    -- RecordWildCards
-    -- in-other-words | implied by TypeFamilyDependencies
+    PatternSynonyms
+    ViewPatterns
+    TemplateHaskell
     TypeFamilies 
-    -- in-other-words
     DataKinds 
-    -- in-other-words
     LambdaCase 
+    DefaultSignatures
+    RoleAnnotations
+    OverloadedLabels
+    -- OverloadedRecordDot
+    -- OverloadedRecordUpdate
+    -- RecordWildCards
     -- NegativeLiterals
     -- UnicodeSyntax
-    DefaultSignatures
-    DerivingVia
     -- FunctionalDependencies
     -- NoMonomorphismRestriction -- default
-    RoleAnnotations
-    ViewPatterns
     -- ExplicitNamespaces -- implied by TypeOperators
     -- NullaryTypeClasses -- replaced by MultiParamTypeClasses
     -- OverloadedLists
     -- ParallelListComp
     -- UnliftedNewtypes
-    BlockArguments
+    -- BlockArguments
     -- DisambiguateRecordFields -- implied by RecordWildCards, DuplicateRecordFields
     -- LexicalNegation
     -- LiberalTypeSynonyms
-    MultiWayIf
+    -- MultiWayIf
     -- RecursiveDo
     -- TypeFamilyDependencies
     -- NondecreasingIndentation
     -- PartialTypeSignatures
-    PatternSynonyms
     -- TemplateHaskellQuotes -- implied by TemplateHaskell
     -- ApplicativeDo
     -- Arrows
     -- CApiFFI
-    DuplicateRecordFields
     -- MagicHash
     -- PackageImports
     -- QuantifiedConstraints
     -- QuasiQuotes
-    TemplateHaskell
     -- TypeInType -- deprecated
     -- UnboxedSums
     -- UnboxedTuples
@@ -147,7 +115,6 @@ executable {{cookiecutter.package_name}}
     -- NPlusKPatterns
     -- NoImplicitPrelude -- implied by RebindableSyntax
     -- OverlappingInstances -- deprecated
-    OverloadedLabels
     -- QualifiedDo
     -- RebindableSyntax
     -- Safe
@@ -156,7 +123,7 @@ executable {{cookiecutter.package_name}}
     -- StrictData
     -- TransformListComp
     -- TrustWorthy
-    UndecidableInstances
+    -- UndecidableInstances
     -- UndecidableSuperClasses
     -- Unsafe
 
