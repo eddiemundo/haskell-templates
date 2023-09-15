@@ -13,10 +13,7 @@ maintainer:          {{cookiecutter.author}} <{{cookiecutter.email}}>
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
-executable {{cookiecutter.package_name}}
-  hs-source-dirs:      app
-  main-is:             Main.hs
-
+common common-lang
   ghc-options:         -Wall
                        -Werror
                        -Wincomplete-uni-patterns
@@ -27,9 +24,10 @@ executable {{cookiecutter.package_name}}
                        -Wredundant-constraints
                        -Wcpp-undef
                        -Wmissing-export-lists
+                       -threaded
 
-  build-depends: 
-    base >=4.16 && < 4.17,
+  build-depends:
+    base,
     aeson,
     async,
     text,
@@ -48,8 +46,6 @@ executable {{cookiecutter.package_name}}
     safe-exceptions,
     unordered-containers
 
-  other-modules:
-
   default-extensions:
     GHC2021
     DuplicateRecordFields
@@ -66,67 +62,40 @@ executable {{cookiecutter.package_name}}
     DefaultSignatures
     RoleAnnotations
     OverloadedLabels
-    -- OverloadedRecordDot
-    -- OverloadedRecordUpdate
-    -- RecordWildCards
-    -- NegativeLiterals
-    -- UnicodeSyntax
-    -- FunctionalDependencies
-    -- NoMonomorphismRestriction -- default
-    -- ExplicitNamespaces -- implied by TypeOperators
-    -- NullaryTypeClasses -- replaced by MultiParamTypeClasses
-    -- OverloadedLists
-    -- ParallelListComp
-    -- UnliftedNewtypes
-    -- BlockArguments
-    -- DisambiguateRecordFields -- implied by RecordWildCards, DuplicateRecordFields
-    -- LexicalNegation
-    -- LiberalTypeSynonyms
-    -- MultiWayIf
-    -- RecursiveDo
-    -- TypeFamilyDependencies
-    -- NondecreasingIndentation
-    -- PartialTypeSignatures
-    -- TemplateHaskellQuotes -- implied by TemplateHaskell
-    -- ApplicativeDo
-    -- Arrows
-    -- CApiFFI
-    -- MagicHash
-    -- PackageImports
-    -- QuantifiedConstraints
-    -- QuasiQuotes
-    -- TypeInType -- deprecated
-    -- UnboxedSums
-    -- UnboxedTuples
-    -- UnliftedFFITypes
-    -- AllowAmbiguousTypes
-    -- CPP
-    -- CUSKs -- deprecated
-    -- DatatypeContexts -- deprecated
-    -- DeriveAnyClass
-    -- ExtendedDefaultRules
-    -- GHCForeignImportPrim
-    -- ImplicitParams
-    -- ImpredicativeTypes
-    -- IncoherentInstances
-    -- InterruptibleFFI
-    -- LinearTypes
-    -- MonadComprehensions
-    -- NPlusKPatterns
-    -- NoImplicitPrelude -- implied by RebindableSyntax
-    -- OverlappingInstances -- deprecated
-    -- QualifiedDo
-    -- RebindableSyntax
-    -- Safe
-    -- StaticPointers
-    -- Strict
-    -- StrictData
-    -- TransformListComp
-    -- TrustWorthy
-    -- UndecidableInstances
-    -- UndecidableSuperClasses
-    -- Unsafe
+    DeriveAnyClass
 
-  -- hs-source-dirs:
   default-language:    Haskell2010
+
+executable {{cookiecutter.package_name}}
+  import:
+    common-lang
+
+  hs-source-dirs:      app
+  main-is:             Main.hs
+
+  other-modules:
+
+library
+  import:
+    common-lang
+
+  hs-source-dirs: src
+
+  exposed-modules:
+
+test-suite {{cookiecutter.package_name}}-tests
+  import: common-lang
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  hs-source-dirs: test
+
+  other-modules:
+
+  build-depends:
+    , tasty
+    , tasty-hspec
+    , hspec
+    , hspec-expectations
+
+
 
