@@ -12,13 +12,14 @@
           {{cookiecutter.package_name}}Project =
             final.haskell-nix.project' {
               src = ./.;
-              compiler-nix-name = "ghc927";
+              compiler-nix-name = "ghc928";
               # This is used by `nix develop .` to open a shell for use with
               # `cabal`, `hlint` and `haskell-language-server`
               shell.tools = {
                 cabal = {};
                 hlint = {};
-                haskell-language-server = {};
+                fourmolu = {};
+                haskell-language-server = { src = pkgs.haskell-nix.sources."hls-2.2"; };
               };
               # Non-Haskell shell tools go here
               shell.buildInputs = with pkgs; [
