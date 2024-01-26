@@ -5,7 +5,7 @@ version:             0.1.0.0
 -- description:
 -- bug-reports:
 -- license:
-license-file:        LICENSE
+-- license-file:        LICENSE
 author:              {{cookiecutter.author}}
 maintainer:          {{cookiecutter.author}} <{{cookiecutter.email}}>
 -- copyright:
