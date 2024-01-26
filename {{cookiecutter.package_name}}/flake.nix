@@ -1,42 +1,44 @@
 {
   description = "A very basic flake {{cookiecutter.package_name}}";
-  inputs.haskellNix.url = "github:input-output-hk/haskell.nix";
-  inputs.nixpkgs.follows = "haskellNix/nixpkgs-unstable";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  outputs = { self, nixpkgs, flake-utils, haskellNix }:
-    flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ] (system:
+  inputs = {
+    haskell-nix.url = "github:input-output-hk/haskell.nix";
+    nixpkgs.follows = "haskell-nix/nixpkgs-unstable";
+  };
+  outputs = { self, nixpkgs, haskell-nix }:
     let
-      overlays = [ haskellNix.overlay
-        (final: prev: {
-          # This overlay adds our project to pkgs
-          {{cookiecutter.package_name}}Project =
-            final.haskell-nix.project' {
-              src = ./.;
-              compiler-nix-name = "ghc928";
-              # This is used by `nix develop .` to open a shell for use with
-              # `cabal`, `hlint` and `haskell-language-server`
-              shell.tools = {
-                cabal = {};
-                hlint = {};
-                fourmolu = {};
-                haskell-language-server = { src = pkgs.haskell-nix.sources."hls-2.2"; };
-              };
-              # Non-Haskell shell tools go here
-              shell.buildInputs = with pkgs; [
-                nixpkgs-fmt
-              ];
-              # This adds `js-unknown-ghcjs-cabal` to the shell.
-              # shell.crossPlatforms = p: [p.ghcjs];
-            };
-        })
+      systems = [
+        "x86_64-linux" 
+        "x86_64-darwin" 
       ];
-      pkgs = import nixpkgs { inherit system overlays; inherit (haskellNix) config; };
-      flake = pkgs.{{cookiecutter.package_name}}Project.flake {
-        # This adds support for `nix build .#js-unknown-ghcjs:{{cookiecutter.package_name}}:exe:{{cookiecutter.package_name}}`
-        # crossPlatforms = p: [p.ghcjs];
-      };
+      perSystem = nixpkgs.lib.genAttrs systems;
+      overlays = [
+        haskell-nix.overlay
+      ];
+      pkgs = perSystem (system:
+        import nixpkgs {
+          inherit system overlays;
+          inherit (haskell-nix) config;
+        }
+      );
+      project = perSystem (system: pkgs.${system}.haskell-nix.project {
+        compiler-nix-name = "ghc964";
+        src = ./.;
+        shell.tools = {
+          cabal = {};
+          hlint = {};
+          fourmolu = {};
+          haskell-language-server = { src = pkgs.haskell-nix.sources."hls-2.4"; };
+        };
+        # Non-Haskell shell tools go here
+        shell.buildInputs = with pkgs; [
+          nixpkgs-fmt
+        ];
+      });
+      flake = perSystem (system: project.${system}.flake {});
     in flake // {
-      # Built by `nix build .`
-      packages.default = flake.packages."{{cookiecutter.package_name}}:exe:{{cookiecutter.package_name}}";
-    });
+      packages = perSystem (system: {
+        {{cookiecutter.package_name}} = flake.${system}.packages."{{cookiecutter.package_name}}:exe:{{cookiecutter.package_name}}";
+        default = self.packages.${system}.{{cookiecutter.package_name}};
+      });
+    }
 }

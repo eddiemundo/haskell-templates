@@ -73,6 +73,10 @@ executable {{cookiecutter.package_name}}
   hs-source-dirs:      app
   main-is:             Main.hs
 
+  build-depends:
+    {{cookiecutter.package_name}}
+   
+
   other-modules:
 
 library
