@@ -3,8 +3,9 @@
   inputs = {
     haskell-nix.url = "github:input-output-hk/haskell.nix";
     nixpkgs.follows = "haskell-nix/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
-  outputs = { self, nixpkgs, haskell-nix }:
+  outputs = { self, flake-utils, nixpkgs, haskell-nix }:
     let
       systems = [
         "x86_64-linux" 
