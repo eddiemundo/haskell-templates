@@ -21,13 +21,13 @@
             haskell-nix.overlay
             (final: prev: {
               {{cookiecutter.package_name}} = final.haskell-nix.project' {
-                compiler-nix-name = "ghc964";
+                compiler-nix-name = "ghc984";
                 src = ./.;
                 shell.tools = {
                   cabal = {};
                   hlint = {};
                   fourmolu = {};
-                  haskell-language-server = { src = prev.haskell-nix.sources."hls-2.6"; };
+                  haskell-language-server = { src = prev.haskell-nix.sources."hls-2.9"; };
                 };
                 shell.buildInputs = with pkgs; [
                 ];

@@ -1,4 +1,4 @@
-cabal-version:       3.0
+cabal-version:       3.10
 name:                {{cookiecutter.package_name}}
 version:             0.1.0.0
 -- synopsis:
@@ -13,18 +13,22 @@ maintainer:          {{cookiecutter.author}} <{{cookiecutter.email}}>
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
-common common-lang
-  ghc-options:         -Wall
-                       -Werror
-                       -Wincomplete-uni-patterns
-                       -Wincomplete-record-updates
-                       -Wpartial-fields
-                       -Wmissing-home-modules
-                       -Widentities
-                       -Wredundant-constraints
-                       -Wcpp-undef
-                       -Wmissing-export-lists
-                       -threaded
+common common-options
+  ghc-options:
+    -Wall
+    -Werror
+    -Wincomplete-uni-patterns
+    -Wincomplete-record-updates
+    -Wpartial-fields
+    -Wmissing-home-modules
+    -Widentities
+    -Wredundant-constraints
+    -Wcpp-undef
+    -Wmissing-export-lists
+    -Wno-name-shadowing
+    -Wno-unused-top-binds
+    -Wno-unused-imports
+    -fwrite-ide-info
 
   build-depends:
     base,
@@ -35,19 +39,25 @@ common common-lang
     bytestring,
     scientific,
     optics,
-    streamly,
+    streamly-core,
     time,
     containers,
+    nonempty-containers
+    unordered-containers
+    semigroupoids,
+    witherable,
     effectful,
     effectful-th,
     hs-opentelemetry-api,
     hs-opentelemetry-sdk,
-    optics,
     safe-exceptions,
-    unordered-containers
+    hashable,
+    prettyprinter,
+    extra,
 
   default-extensions:
-    GHC2021
+    MultiWayIf
+    OverloadedRecordDot
     DuplicateRecordFields
     NoFieldSelectors
     DerivingVia
@@ -64,31 +74,44 @@ common common-lang
     OverloadedLabels
     DeriveAnyClass
 
-  default-language:    Haskell2010
+  default-language: GHC2021
+
+common common-exec-options
+  import:
+    common-options
+
+  ghc-options:
+    -threaded
+    -j
+    +RTS
+    -A128m
+    -n2m
+    -RTS
+
 
 executable {{cookiecutter.package_name}}
   import:
-    common-lang
+    common-exec-options
 
-  hs-source-dirs:      app
-  main-is:             Main.hs
+  hs-source-dirs: app
+  main-is: Main.hs
 
   build-depends:
     {{cookiecutter.package_name}}
    
-
   other-modules:
 
 library
   import:
-    common-lang
+    common-options
 
   hs-source-dirs: src
 
   exposed-modules:
 
 test-suite {{cookiecutter.package_name}}-tests
-  import: common-lang
+  import: 
+    common-options
   type: exitcode-stdio-1.0
   main-is: Main.hs
   hs-source-dirs: test
@@ -100,6 +123,3 @@ test-suite {{cookiecutter.package_name}}-tests
     , tasty-hspec
     , hspec
     , hspec-expectations
-
-
-
