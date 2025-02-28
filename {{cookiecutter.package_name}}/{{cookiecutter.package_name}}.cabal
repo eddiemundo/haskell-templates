@@ -42,8 +42,8 @@ common common-options
     streamly-core,
     time,
     containers,
-    nonempty-containers
-    unordered-containers
+    nonempty-containers,
+    unordered-containers,
     semigroupoids,
     witherable,
     effectful,
