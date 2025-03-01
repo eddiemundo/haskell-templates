@@ -107,6 +107,9 @@ library
 
   hs-source-dirs: src
 
+  default-extensions:
+    NoImplicitPrelude
+
   exposed-modules:
 
 test-suite {{cookiecutter.package_name}}-tests
