@@ -22,7 +22,7 @@
             haskell-nix.overlay
             (final: prev: {
               {{cookiecutter.package_name}} = final.haskell-nix.project' {
-                compiler-nix-name = "ghc984";
+                compiler-nix-name = "ghc982";
                 src = ./.;
                 shell.tools = {
                   cabal = {};
