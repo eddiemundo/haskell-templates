@@ -59,7 +59,11 @@
 - ignore: {name: Avoid lambda using `infix`}
 - ignore: {name: Use first}
 - ignore: {name: Use newtype instead of data}
-
+- ignore: {name: Use maybe}
+- ignore: {name: Redundant multi-way if}
+- ignore: {name: Use ?~}
+- ignore: {name: Redundant pure}
+- ignore: {name: Use const}
 
 # Define some custom infix operators
 # - fixity: infixr 3 ~^#^~
